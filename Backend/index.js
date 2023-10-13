@@ -7,7 +7,7 @@ const router = require("./routes");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(router);
+app.use("/api", router);
 
 app.listen(port, () => {
   console.log(`App Listening on Port ${port}`);
