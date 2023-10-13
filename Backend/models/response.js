@@ -1,43 +1,36 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Response extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.hasMany(models.Take, { foreignKey: "user_id" });
-      User.belongsToMany(models.Quiz, {
-        through: models.Take,
-        foreignKey: "user_id",
-      });
+      Response.belongsTo(models.Take, { foreignKey: "take_id" });
+      Response.belongsTo(models.Option, { foreignKey: "option_id" });
+      Response.belongsTo(models.Question, { foreignKey: "question_id" });
     }
   }
-  User.init(
+  Response.init(
     {
-      firstname: {
-        type: DataTypes.STRING,
+      take_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: { notEmpty: true },
       },
-      lastname: {
-        type: DataTypes.STRING,
+      option_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: { notEmpty: true },
       },
-      username: {
-        type: DataTypes.STRING,
+      question_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: { notEmpty: true },
       },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: { notEmpty: true },
-      },
-      role: {
+      response: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: { notEmpty: true },
@@ -45,8 +38,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "User",
+      modelName: "Response",
     }
   );
-  return User;
+  return Response;
 };

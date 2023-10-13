@@ -3,45 +3,39 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert("Answers", [
+    await queryInterface.bulkInsert("Options", [
       {
         question_id: 1,
-        answer: "Spring Boot",
-        status: true,
-        score: 100,
-
+        content: `AC stands for "Alternative Current.`,
+        is_correct: true,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         question_id: 1,
-        answer: "Expres",
-        status: false,
-        score: 0,
+        content: ` AC flows in one direction only.`,
+        is_correct: false,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         question_id: 1,
-        answer: "Node",
-        status: false,
-        score: 0,
+        content: `AC is primarily used in batteries.`,
+        is_correct: false,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         question_id: 1,
-        answer: "Vue",
-        status: false,
-        score: 0,
+        content: `AC voltage remains constant over time`,
+        is_correct: false,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         question_id: 1,
-        answer: "React",
-        status: false,
-        score: 0,
+        content: `AC voltage remains constant over time`,
+        is_correct: false,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -49,7 +43,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("Answers", null, {
+    await queryInterface.bulkDelete("Options", null, {
       restartIdentity: true,
       truncate: true,
       cascade: true,
